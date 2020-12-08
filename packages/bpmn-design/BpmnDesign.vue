@@ -9,8 +9,6 @@
     ref="content"
     v-loading="bpmnLoading"
   >
-    {{ $lang('fop.save') }}
-
     <div id="bpmn-content" class="canvas" ref="canvas"></div>
     <process-card v-show="eshow" :postion="cardPostion" :card="card" @subproc="checkSubproc" />
     <properties-panel v-if="bpmnScenes && bpmnModeler" :modeler="bpmnModeler" />
@@ -399,9 +397,9 @@ export default {
       // const panel = document
       //   .getElementById('bpmn-content')
       //   .getElementsByClassName('djs-palette two-column open')[0];
-      const panel = this.$refs.canvas.getElementsByClassName('djs-palette two-column open')[0];
-      panel.insertBefore(btn, panel.childNodes[0]);
-      const group = panel.getElementsByClassName('group')[8];
+      const palette = this.$refs.canvas.getElementsByClassName('djs-palette two-column open')[0];
+      palette.insertBefore(btn, palette.childNodes[0]);
+      const group = palette.getElementsByClassName('group')[8];
 
       function unfold(event, target) {
         this.unfold = !this.unfold;
@@ -463,12 +461,18 @@ export default {
 </script>
 
 <style lang="scss">
+@import '@packages/styles/common.scss';
+@import '@packages/styles/element-variables.scss';
 $--color-primary: #409eff;
+
 .bpmn-containers {
   position: relative;
   width: 100%;
   height: 100%;
   flex: 1;
+  .djs-palette {
+    position: absolute;
+  }
   .djs-palette.two-column.open {
     width: 56px;
     left: 0;
@@ -489,9 +493,11 @@ $--color-primary: #409eff;
     height: 100%;
   }
   .bjs-container {
-    position: fixed !important;
+    // position: fixed !important;
+    position: relative;
     border-right: 0.8px solid #f1f1f1;
     border-bottom: 0.8px solid #f1f1f1;
+    width: inherit;
     svg {
       width: 100%;
       height: 100%;
@@ -504,11 +510,11 @@ $--color-primary: #409eff;
     }
   }
 
-  .djs-palette,
-  .djs-palette .entry,
-  .djs-palette .djs-palette-toggle {
-    width: 56px;
-  }
+  // .djs-palette,
+  // .djs-palette .entry,
+  // .djs-palette .djs-palette-toggle {
+  //   width: 56px;
+  // }
 
   .bpmn-icon-lasso-tool,
   .bpmn-icon-space-tool,
@@ -534,47 +540,47 @@ $--color-primary: #409eff;
   }
 
   .icon-custom.start-box {
-    background: url(../assets/images/start.png) no-repeat center center;
+    background: url(~@packages/assets/images/start.png) no-repeat center center;
     background-size: 30px 30px;
   }
 
   .icon-custom.flow-box {
-    background: url(../assets/images/flow.png) no-repeat center center;
+    background: url(~@packages/assets/images/flow.png) no-repeat center center;
     background-size: 20px 30px;
   }
 
   .icon-custom.endsucc-box {
-    background: url(../assets/images/endsucc.png) no-repeat center center;
+    background: url(~@packages/assets/images/endsucc.png) no-repeat center center;
     background-size: 30px 30px;
   }
 
   .icon-custom.endfail-box {
-    background: url(../assets/images/endfail.png) no-repeat center center;
+    background: url(~@packages/assets/images/endfail.png) no-repeat center center;
     background-size: 30px 30px;
   }
 
   .icon-custom.task-box {
-    background: url(../assets/images/business.png) no-repeat center center;
+    background: url(~@packages/assets/images/business.png) no-repeat center center;
     background-size: 30px auto;
   }
 
   .icon-custom.auto-box {
-    background: url(../assets/images/auto.png) no-repeat center center;
+    background: url(~@packages/assets/images/auto.png) no-repeat center center;
     background-size: 30px 30px;
   }
 
   .icon-custom.approve-box {
-    background: url(../assets/images/approve.png) no-repeat center center;
+    background: url(~@packages/assets/images/approve.png) no-repeat center center;
     background-size: 30px auto;
   }
 
   .icon-custom.sign-box {
-    background: url(../assets/images/sign.png) no-repeat center center;
+    background: url(~@packages/assets/images/sign.png) no-repeat center center;
     background-size: 30px auto;
   }
 
   .icon-custom.subproc-box {
-    background: url(../assets/images/subproc.png) no-repeat center center;
+    background: url(~@packages/assets/images/subproc.png) no-repeat center center;
     background-size: 30px 30px;
   }
 

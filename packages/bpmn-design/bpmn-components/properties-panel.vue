@@ -665,11 +665,16 @@ $--color-primary: #409eff;
   height: 100%;
   max-height: 100%;
   overflow-y: auto;
-  background-color: #fafafa;
-  border-color: rgba(0, 0, 0, 0.09);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.09);
+  // border-color: rgba(0, 0, 0, 0.09);
+  // box-shadow: 0 2px 8px rgba(0, 0, 0, 0.09);
   padding: 20px;
   transition: all 0.5s;
+  box-sizing: border-box;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14),
+    0 6px 30px 5px rgba(0, 0, 0, 0.12);
 
   .el-main {
     padding: 0 10px;
