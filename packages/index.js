@@ -1,7 +1,7 @@
 import BpmnDesign from './bpmn-design';
 import BpmnViewer from './bpmn-viewer';
 import locale from './locale';
-import 'vue-bpmn-design/packages/icons';
+import 'bpmn-design-vue/packages/icons';
 
 const components = [BpmnDesign, BpmnViewer];
 

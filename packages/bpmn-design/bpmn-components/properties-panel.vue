@@ -135,8 +135,8 @@
 <script>
 import { START_EVENT } from 'bpmn-js/lib/features/replace/ReplaceOptions.js';
 // import { listSysNode, listNodeDef } from "@/api/fop/business-search";
-import { isType, isInclude } from 'vue-bpmn-design/packages/utils';
-import Locale from 'vue-bpmn-design/packages/mixins/locale';
+import { isType, isInclude } from 'bpmn-design-vue/packages/utils';
+import Locale from 'bpmn-design-vue/packages/mixins/locale';
 
 export default {
   name: 'properties-panel',

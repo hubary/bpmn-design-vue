@@ -77,7 +77,7 @@ import PropertiesPanel from './bpmn-components/properties-panel';
 //   flowDesignSave,
 // } from "@/api/fop/business-search";
 import { isType, isInclude } from '../utils';
-import Locale from 'vue-bpmn-design/packages/mixins/locale';
+import Locale from 'bpmn-design-vue/packages/mixins/locale';
 export default {
   name: 'BpmnDesign',
   mixins: [Locale],

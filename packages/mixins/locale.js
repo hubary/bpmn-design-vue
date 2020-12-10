@@ -1,4 +1,4 @@
-import { t } from 'vue-bpmn-design/packages/locale';
+import { t } from 'bpmn-design-vue/packages/locale';
 
 export default {
   methods: {

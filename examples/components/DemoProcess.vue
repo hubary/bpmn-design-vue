@@ -12,7 +12,8 @@ export default {
   props: {},
   data() {
     return {
-      xml: xml.data.data,
+      // xml: xml.data.data,
+      xml:'',
     };
   },
 };

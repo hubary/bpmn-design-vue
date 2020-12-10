@@ -1,4 +1,4 @@
-import defaultLang from 'vue-bpmn-design/packages/locale/lang/zh-CN';
+import defaultLang from 'bpmn-design-vue/packages/locale/lang/zh-CN';
 import Vue from 'vue';
 import deepmerge from 'deepmerge';
 import Format from './format';

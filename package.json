@@ -1,12 +1,12 @@
 {
-  "name": "vue-bpmn-design",
-  "version": "0.1.0",
+  "name": "bpmn-design-vue",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "lib": "vue-cli-service build --target lib --name vue-bpmn-design --dest dest packages/index.js"
+    "lib": "vue-cli-service build --target lib --name bpmn-design-vue --dest dest packages/index.js"
   },
   "dependencies": {
     "bpmn-js": "^7.5.0",
@@ -35,22 +35,22 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Hubary/vue-bpmn-design.git"
+    "url": "https://github.com/Hubary/bpmn-design-vue.git"
   },
-  "homepage": "http://element.eleme.io",
+  "homepage": "https://gitee.com/love35/bpmn-design-vue",
   "keywords": [
     "vue-bpmn",
-    "vue-bpmn-design",
+    "bpmn-design-vue",
     "bpmn-design"
   ],
   "bugs": {
-    "url": "https://github.com/Hubary/vue-bpmn-design/issues"
+    "url": "https://github.com/Hubary/bpmn-design-vue/issues"
   },
   "peerDependencies": {
     "vue": "^2.5.17"
   },
-  "main": "dest/vue-bpmn-design.common.js",
-  "style":"dest/vue-bpmn-design.css",
+  "main": "dest/bpmn-design-vue.common.js",
+  "style":"dest/bpmn-design-vue.css",
   "files": [
     "dest",
     "packages",

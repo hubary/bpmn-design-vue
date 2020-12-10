@@ -27,7 +27,7 @@ import customModule from '../customModeler';
 import ProcessCard from './process-card';
 // import { getFlowDesign } from "@/api/fop/business-search";
 import { isType, isInclude } from '../../utils';
-import Locale from 'vue-bpmn-design/packages/mixins/locale';
+import Locale from 'bpmn-design-vue/packages/mixins/locale';
 
 export default {
   name: 'process-pup',

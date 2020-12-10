@@ -26,7 +26,7 @@ module.exports = {
   //     // },
   //     scss: {
   //       javascriptEnabled: true, //less 配置
-  //       additionalData: `@import "~vue-bpmn-design/packages/styles/variables.scss";`,
+  //       additionalData: `@import "~bpmn-design-vue/packages/styles/variables.scss";`,
   //     },
   //   }, // css预设器配置项
   //   requireModuleExtension: false, // 启用 CSS modules for all css / pre-processor files.
@@ -51,12 +51,12 @@ module.exports = {
   },
   //警告 webpack 的性能提示
   configureWebpack: {
-    name: 'vue-bpmn-design',
+    name: 'bpmn-design-vue',
     resolve: {
       alias: {
         '@packages': path.resolve(__dirname, './packages'),
         '@examples': path.resolve(__dirname, './examples'),
-        'vue-bpmn-design': path.resolve(__dirname, './'),
+        'bpmn-design-vue': path.resolve(__dirname, './'),
       },
     },
     performance: {
