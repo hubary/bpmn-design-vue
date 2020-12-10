@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import App from './App.vue';
-import VueBpmnDesign from '@packages/bpmn-design';
+import BpmnDesignVue from '@packages/bpmn-design';
 import VueI18n from 'vue-i18n';
 import ElementUI from 'element-ui';
 import '@examples/styles/common.scss';
@@ -37,8 +37,8 @@ export function getLanguage() {
 }
 
 Vue.use(VueI18n);
-Vue.use(ElementUI);
-Vue.use(VueBpmnDesign);
+Vue.use(ElementUI, { size: 'small' });
+Vue.use(BpmnDesignVue);
 Vue.config.productionTip = false;
 const i18n = new VueI18n({
   locale: getLanguage(),

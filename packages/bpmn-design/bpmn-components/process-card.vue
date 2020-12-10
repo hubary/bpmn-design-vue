@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import { isType, isInclude } from '../../utils';
+import { isType, isInclude } from '@packages/utils';
 export default {
   name: 'process-card',
   components: {},

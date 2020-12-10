@@ -1,8 +1,3 @@
-<!--
- * @Author: LeiRuiQi
- * @Date: 2020-08-20 19:57:13
- * @LastEditors: LeiRuiQi
--->
 <template>
   <div
     :class="['bpmn-containers', { 'bpmn-scenes': !bpmnScenes }]"
@@ -10,29 +5,37 @@
     v-loading="bpmnLoading"
   >
     <div id="bpmn-content" class="canvas" ref="canvas"></div>
+    <!-- 还不知道啥作用 -->
     <process-card v-show="eshow" :postion="cardPostion" :card="card" @subproc="checkSubproc" />
-    <properties-panel v-if="bpmnScenes && bpmnModeler" :modeler="bpmnModeler" />
+    <!-- 右侧属性面板 -->
+    <properties-panel
+      v-if="bpmnScenes && bpmnModeler"
+      :modeler="bpmnModeler"
+      :show.sync="mappingShow"
+      :mappingData="mappingData"
+    >
+      <template v-slot:mappingSlot="{ data }">
+        <slot name="mappingSlot" :title="data.node"></slot>
+      </template>
+    </properties-panel>
+    <!-- 按钮组 -->
     <el-button-group class="bpmn-button-group">
-      <el-button
-        v-if="bpmnScenes"
-        type="primary"
-        @click="bpmnSave"
-        icon="el-icon-document"
-        :size="size"
-        >{{ $lang('fop.save') }}</el-button
-      >
-      <el-button
-        v-if="bpmnScenes"
-        type="primary"
-        @click="changeBpmnStepBack()"
-        icon="el-icon-back"
-        :size="size"
-        >{{ $lang('fop.revoke') }}</el-button
-      >
-      <el-button v-if="bpmnScenes" type="primary" @click="changeBpmnStep()" :size="size">
-        {{ $lang('fop.restore') }}
-        <i class="el-icon-right"></i>
-      </el-button>
+      <template v-if="bpmnScenes">
+        <!-- 保存 -->
+        <el-button type="primary" @click="bpmnSave" icon="el-icon-document" :size="size">{{
+          $lang('fop.save')
+        }}</el-button>
+        <!-- 撤销 -->
+        <el-button type="primary" @click="changeBpmnStepBack()" icon="el-icon-back" :size="size">{{
+          $lang('fop.revoke')
+        }}</el-button>
+        <!-- 恢复 -->
+        <el-button type="primary" @click="changeBpmnStep()" :size="size">
+          {{ $lang('fop.restore') }}
+          <i class="el-icon-right"></i>
+        </el-button>
+      </template>
+      <!-- 放大 -->
       <el-button
         type="primary"
         @click="canvasZoom('enlarge')"
@@ -40,6 +43,7 @@
         :size="size"
         >{{ $lang('fop.enlarge') }}</el-button
       >
+      <!-- 缩小 -->
       <el-button
         type="primary"
         @click="canvasZoom('shrink')"
@@ -47,10 +51,6 @@
         :size="size"
         >{{ $lang('fop.shrink') }}</el-button
       >
-      <!-- <el-button
-        type="primary"
-        @click="bpmnSave"
-      >{{$lang("fop.save")}}</el-button> -->
     </el-button-group>
     <!-- <el-dialog
       v-if="!bpmnScenes"
@@ -60,7 +60,7 @@
       width="80%">
       <process-pup :pupData="pupData" />
     </el-dialog> -->
-    <slot name="rightPopup"></slot>
+    <slot name="default"></slot>
   </div>
 </template>
 
@@ -94,6 +94,14 @@ export default {
     xml: {
       type: String,
       default: '',
+    },
+    show: {
+      type: Boolean,
+      default: false,
+    },
+    mappingData: {
+      type: Object,
+      default: null,
     },
   },
   data() {
@@ -150,7 +158,16 @@ export default {
       },
     };
   },
-  computed: {},
+  computed: {
+    mappingShow: {
+      get() {
+        return this.show;
+      },
+      set(val) {
+        this.$emit('update:show', val);
+      },
+    },
+  },
   mounted() {
     // 根据路由path区分 设计/展示 流程图
     // if (isInclude(this.$route.query, "from")) {

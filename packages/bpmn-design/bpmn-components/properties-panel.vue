@@ -1,8 +1,3 @@
-<!--
- * @Author: LeiRuiQi
- * @Date: 2020-08-11 19:12:44
- * @LastEditors: LeiRuiQi
--->
 <template>
   <div :class="['custom-properties-panel', { 'custom-properties-panel-hide': !panelHide }]">
     <div v-if="selectedElements.length == 1">
@@ -97,6 +92,7 @@
         </select>
       </fieldset>
     </div>
+    <slot name="mappingSlot" :data="{ isPopupShow, node }"></slot>
     <!-- <popup
       :title="'建模节点映射选择'"
       :isShow="isPopupShow"
@@ -146,9 +142,18 @@ export default {
       type: Object,
       default: () => ({}),
     },
+    show: {
+      type: Boolean,
+      default: false,
+    },
+    mappingData: {
+      type: Object,
+      default: null,
+    },
   },
   data() {
     return {
+      node: '孙子node',
       selectedElements: [],
       element: null,
       form: {},
@@ -201,7 +206,7 @@ export default {
           },
         ],
       },
-      isPopupShow: false,
+      // isPopupShow: false,
       popFooterList: [
         { name: this.$lang('fop.cancel') },
         {
@@ -269,6 +274,19 @@ export default {
       timeOutList: [],
     };
   },
+  computed: {
+    isTask() {
+      return this.verifyIsTask(this.element.type);
+    },
+    isPopupShow: {
+      get() {
+        return this.show;
+      },
+      set(val) {
+        this.$emit('update:show', val);
+      },
+    },
+  },
   watch: {
     isPopupShow: {
       handler(val) {
@@ -277,6 +295,12 @@ export default {
         }
       },
       immediate: false,
+    },
+    mappingData: {
+      handler(newVal, oldVal) {
+        console.log('mappingData properties-panel', newVal);
+      },
+      deep: true,
     },
   },
   mounted() {
@@ -644,11 +668,6 @@ export default {
       let properties = {};
       properties['activiti:timeFlowFlag'] = strObj;
       this.updateProperties(properties);
-    },
-  },
-  computed: {
-    isTask() {
-      return this.verifyIsTask(this.element.type);
     },
   },
 };
