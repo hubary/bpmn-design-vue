@@ -92,7 +92,7 @@
         </select>
       </fieldset>
     </div>
-    <slot name="mappingSlot" :data="{ isPopupShow, node }"></slot>
+    <slot name="panelSlot" :data="{ isPopupShow, node }" :setMappingData="setMappingData"></slot>
     <!-- <popup
       :title="'建模节点映射选择'"
       :isShow="isPopupShow"
@@ -131,7 +131,7 @@
 <script>
 import { START_EVENT } from 'bpmn-js/lib/features/replace/ReplaceOptions.js';
 // import { listSysNode, listNodeDef } from "@/api/fop/business-search";
-import { isType, isInclude } from 'bpmn-design-vue/packages/utils';
+import { isType, isInclude, deepClone } from 'bpmn-design-vue/packages/utils';
 import Locale from 'bpmn-design-vue/packages/mixins/locale';
 
 export default {
@@ -146,14 +146,10 @@ export default {
       type: Boolean,
       default: false,
     },
-    mappingData: {
-      type: Object,
-      default: null,
-    },
   },
   data() {
     return {
-      node: '孙子node',
+      node: '标题',
       selectedElements: [],
       element: null,
       form: {},
@@ -164,84 +160,84 @@ export default {
         { label: '线上表达式', value: '2' },
       ],
       modelingInput: '',
-      formData: {
-        isBlock: true,
-        isInline: true,
-        searchData: {
-          nodeName: '',
-          nodeId: '',
-          pageRows: 10,
-          curPage: 1,
-          parentId: '51',
-        },
-        formRef: 'inlineForm',
-        searchForm: [
-          {
-            type: 'Input',
-            label: '节点标识',
-            prop: 'nodeId',
-            width: '220px',
-            placeholder: '请输入节点标识',
-          },
-          {
-            type: 'Input',
-            label: '节点名称',
-            prop: 'nodeName',
-            width: '220px',
-            placeholder: '请输入节点名称',
-          },
-        ],
-        searchHandle: [
-          {
-            label: this.$lang('fop.search'),
-            type: 'primary',
-            icon: 'el-icon-search',
-            handle: () => this.getListNodeDef(),
-          },
-          {
-            label: this.$lang('fop.reset'),
-            type: 'primary',
-            icon: 'el-icon-refresh-left',
-            handle: () => this.resetForm('form', this.formData.formRef),
-          },
-        ],
-      },
+      // formData: {
+      //   isBlock: true,
+      //   isInline: true,
+      //   searchData: {
+      //     nodeName: '',
+      //     nodeId: '',
+      //     pageRows: 10,
+      //     curPage: 1,
+      //     parentId: '51',
+      //   },
+      //   formRef: 'inlineForm',
+      //   searchForm: [
+      //     {
+      //       type: 'Input',
+      //       label: '节点标识',
+      //       prop: 'nodeId',
+      //       width: '220px',
+      //       placeholder: '请输入节点标识',
+      //     },
+      //     {
+      //       type: 'Input',
+      //       label: '节点名称',
+      //       prop: 'nodeName',
+      //       width: '220px',
+      //       placeholder: '请输入节点名称',
+      //     },
+      //   ],
+      //   searchHandle: [
+      //     {
+      //       label: this.$lang('fop.search'),
+      //       type: 'primary',
+      //       icon: 'el-icon-search',
+      //       handle: () => this.getListNodeDef(),
+      //     },
+      //     {
+      //       label: this.$lang('fop.reset'),
+      //       type: 'primary',
+      //       icon: 'el-icon-refresh-left',
+      //       handle: () => this.resetForm('form', this.formData.formRef),
+      //     },
+      //   ],
+      // },
       // isPopupShow: false,
-      popFooterList: [
-        { name: this.$lang('fop.cancel') },
-        {
-          type: 'primary',
-          name: this.$lang('fop.confirm'),
-          isSubmit: 'activiti:sysNodeId',
-        },
-      ],
-      popupTable: {
-        paramTableHeader: [
-          {
-            prop: 'nodeId',
-            label: this.$lang('nodeModel.nodeId'),
-          },
-          {
-            prop: 'nodeName',
-            label: this.$lang('nodeModel.nodeName'),
-          },
-          {
-            prop: 'nodeType',
-            label: this.$lang('nodeModel.nodeType'),
-          },
-          {
-            prop: 'createTime',
-            label: this.$lang('nodeModel.creatTime'),
-          },
-        ],
-        tableData: [],
-        pageRows: 10,
-        totalRows: 0,
-        isRidio: true,
-        isPage: true,
-      },
+      // popFooterList: [
+      //   { name: this.$lang('fop.cancel') },
+      //   {
+      //     type: 'primary',
+      //     name: this.$lang('fop.confirm'),
+      //     isSubmit: 'activiti:sysNodeId',
+      //   },
+      // ],
+      // popupTable: {
+      //   paramTableHeader: [
+      //     {
+      //       prop: 'nodeId',
+      //       label: this.$lang('nodeModel.nodeId'),
+      //     },
+      //     {
+      //       prop: 'nodeName',
+      //       label: this.$lang('nodeModel.nodeName'),
+      //     },
+      //     {
+      //       prop: 'nodeType',
+      //       label: this.$lang('nodeModel.nodeType'),
+      //     },
+      //     {
+      //       prop: 'createTime',
+      //       label: this.$lang('nodeModel.creatTime'),
+      //     },
+      //   ],
+      //   tableData: [],
+      //   pageRows: 10,
+      //   totalRows: 0,
+      //   isRidio: true,
+      //   isPage: true,
+      // },
       treeId: '',
-      modelingData: '',
+      modelingData: {},
       modelingType: '',
       forEnd: '0',
       customTaskType: ['start', 'task', 'sign', 'auto', 'subproc', 'approve'],
@@ -287,26 +283,22 @@ export default {
       },
     },
   },
-  watch: {
-    isPopupShow: {
-      handler(val) {
-        if (val) {
-          this.getListNodeDef();
-        }
-      },
-      immediate: false,
-    },
-    mappingData: {
-      handler(newVal, oldVal) {
-        console.log('mappingData properties-panel', newVal);
-      },
-      deep: true,
-    },
-  },
+  watch: {},
   mounted() {
     this.init();
   },
   methods: {
+    /**
+     * @description 通过插槽提供到外部,调用时对modelingData等进行赋值
+     */
+    setMappingData(newVal) {
+      if (newVal) {
+        this.modelingData = newVal;
+        this.getdialogVisible('activiti:sysNodeId');
+      } else {
+        this.modelingData = {};
+      }
+    },
     // 初始化流程图
     init() {
       const { modeler } = this;
@@ -462,8 +454,8 @@ export default {
         properties['sysName'] = this.modelingInput;
         this.updateProperties(properties);
       }
-      this.$refs['form'].$refs['inlineForm'].resetFields();
-      this.isPopupShow = false;
+      // this.$refs['form'].$refs['inlineForm'].resetFields();
+      // this.isPopupShow = false;
     },
     // 设置分支方式
     changeBranchType(event) {
@@ -508,22 +500,22 @@ export default {
       modeling.updateProperties(element, properties);
     },
     // 获取对应数据并且过滤有效数据
-    getListNodeDef() {
-      const params = Object.assign({}, this.formData.searchData, {
-        curPage: this.popupTable.curPage,
-        pageRows: this.popupTable.pageRows,
-      });
-      // 刘含修改于2020-11-3 ,nodeType参数传给后端去过滤
-      params.nodeType = this.modelingType;
-      // listNodeDef(params).then(({pageData}) => {
-      //   this.popupTable.tableData =pageData.result;
-      //   // this.popupTable.tableData = (pageData.result).filter((item) => item.nodeType === this.modelingType);
-      //   this.popupTable.totalRows = pageData.totalRows;
-      // });
-    },
-    getRadioSelected(data) {
-      this.modelingData = data;
-    },
+    // getListNodeDef() {
+    //   const params = Object.assign({}, this.formData.searchData, {
+    //     curPage: this.popupTable.curPage,
+    //     pageRows: this.popupTable.pageRows,
+    //   });
+    //   // 刘含修改于2020-11-3 ,nodeType参数传给后端去过滤
+    //   params.nodeType = this.modelingType;
+    //   listNodeDef(params).then(({pageData}) => {
+    //     this.popupTable.tableData =pageData.result;
+    //     // this.popupTable.tableData = (pageData.result).filter((item) => item.nodeType === this.modelingType);
+    //     this.popupTable.totalRows = pageData.totalRows;
+    //   });
+    // },
+    // getRadioSelected(data) {
+    //   this.modelingData = data;
+    // },
     expandAttrs(busObj) {
       this.textDocShow = false;
       this.hiddenPanelItem();
@@ -569,15 +561,15 @@ export default {
         }
       }
     },
-    tablePageSearch(page) {
-      this.popupTable.curPage = Number(page);
-      this.getListNodeDef();
-    },
-    tablePageSizeSearch(pageSize) {
-      this.popupTable.curPage = 1;
-      this.popupTable.pageRows = Number(pageSize);
-      this.getListNodeDef();
-    },
+    // tablePageSearch(page) {
+    //   this.popupTable.curPage = Number(page);
+    //   this.getListNodeDef();
+    // },
+    // tablePageSizeSearch(pageSize) {
+    //   this.popupTable.curPage = 1;
+    //   this.popupTable.pageRows = Number(pageSize);
+    //   this.getListNodeDef();
+    // },
     // 隐藏节点属性设置框
     hiddenPanelItem() {
       this.branchTypeShow = false;
@@ -616,10 +608,10 @@ export default {
         this.creatSequenceFlow(businessObject);
       }
     },
-    resetForm(form, formName) {
-      this.$refs[form].$refs[formName].resetFields();
-      this.getListNodeDef();
-    },
+    // resetForm(form, formName) {
+    //   this.$refs[form].$refs[formName].resetFields();
+    //   this.getListNodeDef();
+    // },
     setTimeOutList(busObj) {
       this.timeOutPass = null;
       this.timeOutVeto = null;

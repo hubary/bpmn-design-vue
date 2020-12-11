@@ -4,15 +4,23 @@
 * @Description: 描述
 -->
 <template>
-  <div>渲染器</div>
+  <BpmnDesign xml="xml" :viewer="true" />
 </template>
 
 <script>
+import BpmnDesign from '@packages/bpmn-design/BpmnDesign.vue';
 export default {
-  name: 'Hubary',
-  components: {},
+  name: 'BpmnViewer',
+  components: {
+    BpmnDesign,
+  },
   mixins: [],
-  props: {},
+  props: {
+    xml: {
+      type: String,
+      default: null,
+    },
+  },
   data() {
     return {};
   },
@@ -23,5 +31,4 @@ export default {
   methods: {},
 };
 </script>
-<style lang='scss' scoped>
-</style>
+<style lang="scss" scoped></style>

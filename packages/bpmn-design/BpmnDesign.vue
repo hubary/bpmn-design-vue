@@ -12,10 +12,9 @@
       v-if="bpmnScenes && bpmnModeler"
       :modeler="bpmnModeler"
       :show.sync="mappingShow"
-      :mappingData="mappingData"
     >
-      <template v-slot:mappingSlot="{ data }">
-        <slot name="mappingSlot" :title="data.node"></slot>
+      <template v-slot:panelSlot="{ setMappingData }">
+        <slot name="mappingSlot" :setMappingData="setMappingData"></slot>
       </template>
     </properties-panel>
     <!-- 按钮组 -->
@@ -60,7 +59,6 @@
       width="80%">
       <process-pup :pupData="pupData" />
     </el-dialog> -->
-    <slot name="default"></slot>
   </div>
 </template>
 
@@ -99,9 +97,10 @@ export default {
       type: Boolean,
       default: false,
     },
-    mappingData: {
-      type: Object,
-      default: null,
+    // 查看器传入的内容
+    viewer: {
+      type: Boolean,
+      default: false,
     },
   },
   data() {
@@ -109,7 +108,7 @@ export default {
       // bpmn建模器
       bpmnModeler: null,
       element: null,
-      bpmnLoading: true,
+      bpmnLoading: false,
       bpmnStartData: {
         file: '',
         key: '',
@@ -197,12 +196,20 @@ export default {
     //     this.getFlowStartDesign(queryData);
     //   }
     // } else if (isInclude(this.$route.query, "processXml")) {
+    // 查看器
     //   this.bpmnScenes = false;
     //   this.init(decodeURIComponent(this.$route.query.processXml));
     // }
-    this.bpmnScenes = true;
-    this.bpmnStartData.key = 'RUM0005'; // RUM0005
-    this.init(this.xml);
+    if (this.viewer) {
+      // 查看器
+      this.bpmnScenes = false;
+      this.init(this.xml);
+    } else {
+      // 设计器
+      this.bpmnScenes = true;
+      this.bpmnStartData.key = 'RUM0005'; // RUM0005
+      this.init(this.xml);
+    }
   },
   methods: {
     /**
@@ -226,19 +233,19 @@ export default {
      * @description: 从流程模型进入对流程图设计获取xml
      * @param: processCode(流程编码)，flowVersion(流程版本)
      */
-    getFlowStartDesign({ processCode, flowVersion }) {
-      if (String(processCode) !== 'undefined' && String(flowVersion) !== 'undefined') {
-        // getStartFlowDesign({processCode, flowVersion}).then(({ Header, data }) => {
-        //   if (!Header || !data) {
-        //     this.resStatus("流程图获取失败", "", "F", true);
-        //     return;
-        //   }
-        //   this.resStatus(Header.RetMsg, "流程图已获取", Header.RetStatus, true);
-        //   this.bpmnStartData.key = processCode; // RUM0005
-        //   this.init(data);
-        // });
-      }
-    },
+    // getFlowStartDesign({ processCode, flowVersion }) {
+    //   if (String(processCode) !== 'undefined' && String(flowVersion) !== 'undefined') {
+    //     getStartFlowDesign({processCode, flowVersion}).then(({ Header, data }) => {
+    //       if (!Header || !data) {
+    //         this.resStatus("流程图获取失败", "", "F", true);
+    //         return;
+    //       }
+    //       this.resStatus(Header.RetMsg, "流程图已获取", Header.RetStatus, true);
+    //       this.bpmnStartData.key = processCode; // RUM0005
+    //       this.init(data);
+    //     });
+    //   }
+    // },
     // 查看流程图，获取xml
     checkFlowDesign() {
       // getFlowDesign(this.bpmnEditData).then(({ Header, xml }) => {
@@ -252,7 +259,6 @@ export default {
      */
     init(xml) {
       if (!xml) {
-        this.bpmnLoading = false;
         return;
       }
       const canvas = this.$refs.canvas;
@@ -284,6 +290,7 @@ export default {
     async createNewDiagram(xmlData) {
       // console.log(xmlData)
       // 将字符串转换成图显示出来
+      this.bpmnLoading = true;
       try {
         await this.bpmnModeler.importXML(xmlData);
 
@@ -294,10 +301,11 @@ export default {
         } else {
           this.checkProcessView();
         }
-        this.bpmnLoading = false;
       } catch (err) {
-        this.resStatus('流程图获取失败', '', 'F');
+        this.resStatus('流程图转换发生错误', '', 'F');
         console.error(err.message, err.warnings);
+      } finally {
+        this.bpmnLoading = false;
       }
     },
     customFlowStyle() {
@@ -388,32 +396,12 @@ export default {
       });
       modeling.updateProperties(element, { color: color });
     },
-    // 保存xml { format: true } 表示传给后端的xml带 \n 换行
-    async bpmnSave() {
-      this.bpmnLoading = true;
-      try {
-        const result = await this.bpmnModeler.saveXML({ format: true });
-        if (result.xml !== '') {
-          console.log('bpmnSave', result);
-          // this.bpmnStartData.file = result.xml;
-          // flowDesignSave(this.bpmnStartData).then(({ Header }) => {
-          //   this.bpmnLoading = false;
-          //   this.resStatus(Header.RetMsg, "流程图已保存", Header.RetStatus, true);
-          // });
-        }
-      } catch (err) {
-        this.resStatus('流程图保存失败', '', 'F');
-        console.log(err.message, err.warnings);
-      }
-    },
+
     // 为panel添加 收起/展开 按钮
     customModuleStyle() {
       const btn = document.createElement('button');
       btn.className = 'unfold';
       btn.innerText = this.$lang('fop.receive');
-      // const panel = document
-      //   .getElementById('bpmn-content')
-      //   .getElementsByClassName('djs-palette two-column open')[0];
       const palette = this.$refs.canvas.getElementsByClassName('djs-palette two-column open')[0];
       palette.insertBefore(btn, palette.childNodes[0]);
       const group = palette.getElementsByClassName('group')[8];
@@ -449,24 +437,55 @@ export default {
         });
       }
     },
+    // ==开始==  按钮操作  ========================0==
+    /**
+     * @description 保存xml { format: true } 表示传给后端的xml带 \n 换行
+     * @emit { onSave }
+     */
+    async bpmnSave() {
+      // this.bpmnLoading = true;
+      try {
+        const result = await this.bpmnModeler.saveXML({ format: true });
+        if (result.xml !== '') {
+          console.log('bpmnSave', result);
+          this.bpmnStartData.file = result.xml;
+          // 对外发送'onBpmnSave'数据
+          this.$emit('onBpmnSave', this.bpmnStartData);
+          // flowDesignSave(this.bpmnStartData).then(({ Header }) => {
+          // this.bpmnLoading = false;
+          //   this.resStatus(Header.RetMsg, "流程图已保存", Header.RetStatus, true);
+          // });
+        }
+      } catch (err) {
+        this.resStatus('流程图本地数据导出失败', '', 'F');
+        console.log(err.message, err.warnings);
+      }
+    },
     canvasZoom(type) {
       if (type === 'enlarge' && this.Scale <= 3) {
+        // 放大
         this.Scale += 0.3;
       } else if (type === 'shrink' && this.Scale > 1) {
+        // 缩小
         this.Scale -= 0.3;
       }
       this.bpmnModeler.get('canvas').zoom(this.Scale);
     },
+
+    // 恢复
     changeBpmnStep() {
       if (this.bpmnModeler.get('commandStack').canRedo()) {
         this.bpmnModeler.get('commandStack').redo();
       }
     },
+    // 撤销
     changeBpmnStepBack() {
       if (this.bpmnModeler.get('commandStack').canUndo()) {
         this.bpmnModeler.get('commandStack').undo();
       }
     },
+    // ==结束==  按钮操作  ========================1==
+
     checkSubproc(data) {
       this.eshow = false;
       Object.assign(this.pupData, data);
