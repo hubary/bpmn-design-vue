@@ -1,4 +1,4 @@
-import BpmnViewer from './BpmnViewer.vue';
+import BpmnViewer from './bpmn-viewer.vue';
 
 // 为组件提供 install 安装方法，供按需引入
 BpmnViewer.install = function(Vue) {

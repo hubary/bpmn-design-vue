@@ -1,8 +1,9 @@
 import Vue from 'vue';
 import App from './App.vue';
-import BpmnDesignVue from '@packages/bpmn-design';
+import BpmnDesignVue from '@packages';
 import VueI18n from 'vue-i18n';
 import ElementUI from 'element-ui';
+import router from './router/index'
 import '@examples/styles/common.scss';
 import 'element-ui/lib/theme-chalk/index.css';
 // 以下为bpmn工作流绘图工具的样式
@@ -46,7 +47,9 @@ const i18n = new VueI18n({
   silentTranslationWarn: false,
 });
 
-new Vue({
+const Instance = new Vue({
   i18n,
+  router,
   render: (h) => h(App),
 }).$mount('#app');
+console.log(Instance);

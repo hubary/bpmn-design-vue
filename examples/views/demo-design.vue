@@ -31,7 +31,7 @@
 import xml from './mockxml.json';
 import mockData from './mock.js';
 export default {
-  name: 'DemoProcess',
+  name: 'demo-design',
   props: {},
   data() {
     return {

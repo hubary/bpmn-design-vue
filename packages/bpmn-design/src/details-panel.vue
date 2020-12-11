@@ -1,26 +1,18 @@
 <!--
 * @Author: liuhan
-* @Email:  hubary@qq.com
+* @Email:  liuhan@csftgroup.com/hubary@qq.com
 * @Description: 描述
 -->
 <template>
-  <BpmnDesign xml="xml" :viewer="true" />
+  <div></div>
 </template>
 
 <script>
-import BpmnDesign from '@packages/bpmn-design/BpmnDesign.vue';
 export default {
-  name: 'BpmnViewer',
-  components: {
-    BpmnDesign,
-  },
+  name: 'Hubary',
+  components: {},
   mixins: [],
-  props: {
-    xml: {
-      type: String,
-      default: null,
-    },
-  },
+  props: {},
   data() {
     return {};
   },

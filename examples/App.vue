@@ -1,23 +1,25 @@
 <template>
   <div id="app">
     <el-container class="">
-      <el-header>Header</el-header>
+      <el-header>
+        <router-link to="/">demo design</router-link>
+        <router-link to="/demo-viewer">demo viewer</router-link>
+      </el-header>
       <el-container>
         <el-aside width="200px" class="hubary-aside">Aside</el-aside>
-        <el-main><DemoProcess msg="Welcome to Your Vue.js App" /></el-main>
+        <el-main>
+          <router-view></router-view>
+        </el-main>
       </el-container>
     </el-container>
   </div>
 </template>
 
 <script>
-import DemoProcess from './components/DemoProcess.vue';
 
 export default {
   name: 'App',
-  components: {
-    DemoProcess,
-  },
+  components: {},
 };
 </script>
 
@@ -32,6 +34,9 @@ export default {
 }
 .el-header {
   background: #9f9;
+  display: flex;
+  justify-content:space-evenly;
+  align-items: center;
 }
 .el-container {
   height: 100%;

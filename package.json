@@ -8,6 +8,12 @@
     "lint": "vue-cli-service lint",
     "lib": "vue-cli-service build --target lib --name bpmn-design-vue --dest dest packages/index.js"
   },
+  "main": "dest/bpmn-design-vue.common.js",
+  "files": [
+    "dest",
+    "packages",
+    "examples"
+  ],
   "dependencies": {
     "bpmn-js": "^7.5.0",
     "bpmn-js-properties-panel": "^0.37.6",
@@ -16,11 +22,13 @@
     "deepmerge": "^4.2.2",
     "element-ui": "^2.14.1",
     "vue": "^2.6.11",
-    "vue-i18n": "^8.22.2"
+    "vue-i18n": "^8.22.2",
+    "vue-router": "^3.2.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-plugin-router": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
     "@vue/eslint-config-prettier": "^6.0.0",
     "babel-eslint": "^10.1.0",
@@ -33,27 +41,21 @@
     "sass-loader": "^8.0.2",
     "vue-template-compiler": "^2.6.11"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Hubary/bpmn-design-vue.git"
+  "peerDependencies": {
+    "vue": "^2.5.17"
   },
-  "homepage": "https://gitee.com/love35/bpmn-design-vue",
+  "bugs": {
+    "url": "https://github.com/Hubary/bpmn-design-vue/issues"
+  },
+  "homepage": "https://github.com/Hubary/bpmn-design-vue",
   "keywords": [
     "vue-bpmn",
     "bpmn-design-vue",
     "bpmn-design"
   ],
-  "bugs": {
-    "url": "https://github.com/Hubary/bpmn-design-vue/issues"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Hubary/bpmn-design-vue.git"
   },
-  "peerDependencies": {
-    "vue": "^2.5.17"
-  },
-  "main": "dest/bpmn-design-vue.common.js",
-  "style":"dest/bpmn-design-vue.css",
-  "files": [
-    "dest",
-    "packages",
-    "examples"
-  ]
+  "style": "dest/bpmn-design-vue.css"
 }

@@ -1,4 +1,4 @@
-import BpmnDesign from './BpmnDesign.vue';
+import BpmnDesign from './bpmn-design.vue';
 
 // 为组件提供 install 安装方法，供按需引入
 BpmnDesign.install = function(Vue) {

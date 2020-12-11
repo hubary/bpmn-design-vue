@@ -51,6 +51,7 @@
         >{{ $lang('fop.shrink') }}</el-button
       >
     </el-button-group>
+
     <!-- <el-dialog
       v-if="!bpmnScenes"
       :title="$lang('bpmn.viewSubprocess')"
@@ -76,6 +77,7 @@ import PropertiesPanel from './bpmn-components/properties-panel';
 // } from "@/api/fop/business-search";
 import { isType, isInclude } from '../utils';
 import Locale from 'bpmn-design-vue/packages/mixins/locale';
+const customElements = ['start', 'endsucc', 'endfail', 'approve'];
 export default {
   name: 'BpmnDesign',
   mixins: [Locale],
@@ -101,6 +103,11 @@ export default {
     viewer: {
       type: Boolean,
       default: false,
+    },
+    topButtons: {
+      type: Array,
+      default: () => ['save', 'revoke', 'restore', 'enlarge', 'shrink'],
+      required: false,
     },
   },
   data() {
@@ -167,6 +174,9 @@ export default {
       },
     },
   },
+  created() {
+    console.log('customModule', customModule);
+  },
   mounted() {
     // 根据路由path区分 设计/展示 流程图
     // if (isInclude(this.$route.query, "from")) {
@@ -200,15 +210,17 @@ export default {
     //   this.bpmnScenes = false;
     //   this.init(decodeURIComponent(this.$route.query.processXml));
     // }
-    if (this.viewer) {
-      // 查看器
-      this.bpmnScenes = false;
-      this.init(this.xml);
-    } else {
-      // 设计器
-      this.bpmnScenes = true;
-      this.bpmnStartData.key = 'RUM0005'; // RUM0005
-      this.init(this.xml);
+    if (this.xml) {
+      if (this.viewer) {
+        // 查看器
+        this.bpmnScenes = false;
+        this.init(this.xml);
+      } else {
+        // 设计器
+        this.bpmnScenes = true;
+        this.bpmnStartData.key = 'RUM0005'; // RUM0005
+        this.init(this.xml);
+      }
     }
   },
   methods: {

@@ -15,7 +15,7 @@ module.exports = {
     port: 3000,
     open: true,
     hot: true,
-    host: 'hubary.com',
+    host: '0.0.0.0',
   },
   // css: {
   //   extract: true, // 是否使用css分离插件 ExtractTextPlugin
