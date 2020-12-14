@@ -29,9 +29,9 @@ isType.init();
  * @param {string} path
  * @returns {Boolean}
  */
-export function isExternal(path) {
-  return /^(https?:|mailto:|tel:)/.test(path);
-}
+// export function isExternal(path) {
+//   return /^(https?:|mailto:|tel:)/.test(path);
+// }
 
 /**
  * This is just a simple version of deep copy
