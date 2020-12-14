@@ -95,6 +95,10 @@ export default {
       type: String,
       default: '',
     },
+    key: {
+      type: String,
+      default: '',
+    },
     show: {
       type: Boolean,
       default: false,
@@ -123,10 +127,10 @@ export default {
       },
       bpmnEditData: {
         userMap: {
-          userId: '100002',
-          orderBankNo: '800000',
-          userName: '800000',
-          userRole: 'ZHZ',
+          userId: '',
+          orderBankNo: '',
+          userName: '',
+          userRole: '',
         },
         processCode: '',
         processId: '',
@@ -218,7 +222,7 @@ export default {
       } else {
         // 设计器
         this.bpmnScenes = true;
-        this.bpmnStartData.key = 'RUM0005'; // RUM0005
+        this.bpmnStartData.key = this.key; // RUM0005
         this.init(this.xml);
       }
     }
