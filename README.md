@@ -37,7 +37,45 @@ import 'bpmn-js/dist/assets/bpmn-font/css/bpmn-codes.css';
 import 'bpmn-js/dist/assets/bpmn-font/css/bpmn-embedded.css';
 
 import 'bpmn-js-properties-panel/dist/assets/bpmn-js-properties-panel.css'; // 右边工具栏样式
+import "bpmn-design-vue/dest/bpmn-design-vue.css";
 
 Vue.use(BpmnDesignVue)
 
 ```
+
+
+```bash
+<template>
+  <div class="bpmn-viewer">
+    <bpmn-viewer :xml="xml"></bpmn-viewer>
+  </div>
+</template>
+
+<script>
+import xml from './mockxml.json';
+
+export default {
+  name: 'Hubary',
+  components: {},
+  mixins: [],
+  props: {},
+  data() {
+    return {
+      xml: xml.data.data,
+    };
+  },
+  computed: {},
+  watch: {},
+  created() {},
+  mounted() {},
+  methods: {},
+};
+</script>
+<style lang="scss" scoped>
+.bpmn-viewer {
+  height: 100%;
+  width: 100%;
+}
+</style>
+```
+

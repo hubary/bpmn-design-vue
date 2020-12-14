@@ -1,4 +1,5 @@
 const path = require('path');
+const PACKAGE = require('./package.json');
 module.exports = {
   // 将 examples 目录添加为新的页面
   pages: {
@@ -51,7 +52,7 @@ module.exports = {
   },
   //警告 webpack 的性能提示
   configureWebpack: {
-    name: 'bpmn-design-vue',
+    name: PACKAGE.name,
     resolve: {
       alias: {
         '@packages': path.resolve(__dirname, './packages'),
