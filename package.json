@@ -9,10 +9,10 @@
     "lib": "vue-cli-service build --target lib --dest dest packages/index.js"
   },
   "main": "dest/bpmn-design-vue.common.js",
+  "license": "MIT",
   "files": [
     "dest",
-    "packages",
-    "examples"
+    "packages"
   ],
   "dependencies": {
     "bpmn-js": "^7.5.0",
