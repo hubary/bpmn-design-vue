@@ -2,7 +2,7 @@ import { t } from 'bpmn-design-vue/packages/locale';
 
 export default {
   methods: {
-    $lang(...args) {
+    $i18Han(...args) {
       return t.apply(this, args);
     },
   },

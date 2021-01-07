@@ -6,14 +6,14 @@
         @click="canvasZoom('enlarge')"
         icon="el-icon-zoom-in"
         :size="size"
-        >{{ $lang('fop.enlarge') }}</el-button
+        >{{ $i18Han('fop.enlarge') }}</el-button
       >
       <el-button
         type="primary"
         @click="canvasZoom('shrink')"
         icon="el-icon-zoom-out"
         :size="size"
-        >{{ $lang('fop.shrink') }}</el-button
+        >{{ $i18Han('fop.shrink') }}</el-button
       >
     </el-button-group>
     <div class="canvas" ref="processCanvas"></div>
@@ -29,9 +29,11 @@ import ProcessCard from './process-card';
 import { isType, isInclude } from '../../utils';
 import Locale from 'bpmn-design-vue/packages/mixins/locale';
 
+
 export default {
   name: 'process-pup',
   mixins: [Locale],
+
   components: {
     ProcessCard,
   },

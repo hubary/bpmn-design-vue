@@ -5,40 +5,40 @@
       <div>
         <div class="content-button" v-if="card.subproc">
           <el-button icon="el-icon-connection" type="primary" @click="checkChildFlow">
-            {{ $lang('bpmn.viewSubprocess') }}</el-button
+            {{ $i18Han('bpmn.viewSubprocess') }}</el-button
           >
         </div>
         <div v-if="card.state == '1'">
-          <span class="card-label">{{ $lang('bpmn.serialNumber') }}: </span>
+          <span class="card-label">{{ $i18Han('bpmn.serialNumber') }}: </span>
           <span>{{ card.mainflow }}{{ card.subflow }}</span>
         </div>
         <div v-else-if="card.state == '0' && card.douser">
-          <span class="card-label">{{ $lang('bpmn.handleablePerson') }}: </span>
+          <span class="card-label">{{ $i18Han('bpmn.handleablePerson') }}: </span>
           <span>{{ card.douser }}</span>
         </div>
         <div v-if="card.doresult && card.doresult.length">
           <div class="card-item" v-for="(v, index) in card.doresult" :key="index">
             <div v-if="v.username">
-              <span class="card-label">{{ $lang('bpmn.handler') }}: </span>
+              <span class="card-label">{{ $i18Han('bpmn.handler') }}: </span>
               <span>{{ v.username }}</span>
             </div>
             <div v-if="v.dotime">
-              <span class="card-label">{{ $lang('bpmn.processingTime') }}: </span>
+              <span class="card-label">{{ $i18Han('bpmn.processingTime') }}: </span>
               <span>{{ v.dotime }}</span>
             </div>
             <div v-if="v.result">
-              <span class="card-label">{{ $lang('bpmn.processResult') }}: </span>
+              <span class="card-label">{{ $i18Han('bpmn.processResult') }}: </span>
               <span>{{ v.result }}</span>
             </div>
             <div v-if="v.remark">
-              <span class="card-label">{{ $lang('bpmn.handlingOpinions') }}: </span>
+              <span class="card-label">{{ $i18Han('bpmn.handlingOpinions') }}: </span>
               <span>{{ v.remark }}</span>
             </div>
           </div>
         </div>
         <div v-if="card.errormsg">
           <span class="error-point"></span>
-          <span class="card-label label-error error">{{ $lang('bpmn.errorMessage') }}: </span>
+          <span class="card-label label-error error">{{ $i18Han('bpmn.errorMessage') }}: </span>
           <span class="error">{{ card.errormsg }}</span>
         </div>
       </div>
@@ -49,7 +49,6 @@
 <script>
 import { isType, isInclude } from '@packages/utils';
 import Locale from 'bpmn-design-vue/packages/mixins/locale';
-
 export default {
   name: 'process-card',
   mixins: [Locale],

@@ -137,6 +137,7 @@ import Locale from 'bpmn-design-vue/packages/mixins/locale';
 export default {
   name: 'properties-panel',
   mixins: [Locale],
+
   props: {
     modeler: {
       type: Object,
@@ -189,13 +190,13 @@ export default {
       //   ],
       //   searchHandle: [
       //     {
-      //       label: this.$lang('fop.search'),
+      //       label: this.$i18Han('fop.search'),
       //       type: 'primary',
       //       icon: 'el-icon-search',
       //       handle: () => this.getListNodeDef(),
       //     },
       //     {
-      //       label: this.$lang('fop.reset'),
+      //       label: this.$i18Han('fop.reset'),
       //       type: 'primary',
       //       icon: 'el-icon-refresh-left',
       //       handle: () => this.resetForm('form', this.formData.formRef),
@@ -204,10 +205,10 @@ export default {
       // },
       // isPopupShow: false,
       // popFooterList: [
-      //   { name: this.$lang('fop.cancel') },
+      //   { name: this.$i18Han('fop.cancel') },
       //   {
       //     type: 'primary',
-      //     name: this.$lang('fop.confirm'),
+      //     name: this.$i18Han('fop.confirm'),
       //     isSubmit: 'activiti:sysNodeId',
       //   },
       // ],
@@ -215,19 +216,19 @@ export default {
       //   paramTableHeader: [
       //     {
       //       prop: 'nodeId',
-      //       label: this.$lang('nodeModel.nodeId'),
+      //       label: this.$i18Han('nodeModel.nodeId'),
       //     },
       //     {
       //       prop: 'nodeName',
-      //       label: this.$lang('nodeModel.nodeName'),
+      //       label: this.$i18Han('nodeModel.nodeName'),
       //     },
       //     {
       //       prop: 'nodeType',
-      //       label: this.$lang('nodeModel.nodeType'),
+      //       label: this.$i18Han('nodeModel.nodeType'),
       //     },
       //     {
       //       prop: 'createTime',
-      //       label: this.$lang('nodeModel.creatTime'),
+      //       label: this.$i18Han('nodeModel.creatTime'),
       //     },
       //   ],
       //   tableData: [],

@@ -22,15 +22,15 @@
       <template v-if="bpmnScenes">
         <!-- 保存 -->
         <el-button type="primary" @click="bpmnSave" icon="el-icon-document" :size="size">{{
-          $lang('fop.save')
+          $i18Han('fop.save')
         }}</el-button>
         <!-- 撤销 -->
         <el-button type="primary" @click="changeBpmnStepBack()" icon="el-icon-back" :size="size">{{
-          $lang('fop.revoke')
+          $i18Han('fop.revoke')
         }}</el-button>
         <!-- 恢复 -->
         <el-button type="primary" @click="changeBpmnStep()" :size="size">
-          {{ $lang('fop.restore') }}
+          {{ $i18Han('fop.restore') }}
           <i class="el-icon-right"></i>
         </el-button>
       </template>
@@ -40,7 +40,7 @@
         @click="canvasZoom('enlarge')"
         icon="el-icon-zoom-in"
         :size="size"
-        >{{ $lang('fop.enlarge') }}</el-button
+        >{{ $i18Han('fop.enlarge') }}</el-button
       >
       <!-- 缩小 -->
       <el-button
@@ -48,13 +48,13 @@
         @click="canvasZoom('shrink')"
         icon="el-icon-zoom-out"
         :size="size"
-        >{{ $lang('fop.shrink') }}</el-button
+        >{{ $i18Han('fop.shrink') }}</el-button
       >
     </el-button-group>
 
     <el-dialog
       v-if="!bpmnScenes"
-      :title="$lang('bpmn.viewSubprocess')"
+      :title="$i18Han('bpmn.viewSubprocess')"
       :visible.sync="isPopupShow"
       :close-on-click-modal="false"
       width="80%">
@@ -413,7 +413,7 @@ export default {
     customModuleStyle() {
       const btn = document.createElement('button');
       btn.className = 'unfold';
-      btn.innerText = this.$lang('fop.receive');
+      btn.innerText = this.$i18Han('fop.receive');
       const palette = this.$refs.canvas.getElementsByClassName('djs-palette two-column open')[0];
       palette.insertBefore(btn, palette.childNodes[0]);
       const group = palette.getElementsByClassName('group')[8];
@@ -421,10 +421,10 @@ export default {
       function unfold(event, target) {
         this.unfold = !this.unfold;
         if (this.unfold) {
-          event.innerText = this.$lang('fop.receive');
+          event.innerText = this.$i18Han('fop.receive');
           target.className = 'group';
         } else {
-          event.innerText = this.$lang('fop.unfold');
+          event.innerText = this.$i18Han('fop.unfold');
           target.className += ' group-unfold';
         }
       }
