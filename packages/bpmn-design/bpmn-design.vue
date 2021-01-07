@@ -52,14 +52,14 @@
       >
     </el-button-group>
 
-    <!-- <el-dialog
+    <el-dialog
       v-if="!bpmnScenes"
       :title="$lang('bpmn.viewSubprocess')"
       :visible.sync="isPopupShow"
       :close-on-click-modal="false"
       width="80%">
       <process-pup :pupData="pupData" />
-    </el-dialog> -->
+    </el-dialog>
   </div>
 </template>
 
@@ -92,10 +92,6 @@ export default {
       default: 'mini',
     },
     xml: {
-      type: String,
-      default: '',
-    },
-    key: {
       type: String,
       default: '',
     },

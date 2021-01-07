@@ -1,0 +1,25 @@
+{
+  "statusCode": 200,
+  "data": {
+    "Header": {
+      "TranTeller": "100001",
+      "CurrentPageNum": "2222",
+      "TranDate": "20210107",
+      "PageStart": "0",
+      "AuthFlag": "1",
+      "TranSeq": "1",
+      "BranchId": "800000",
+      "GlobalSeq": "2021171610013908604",
+      "RetMsg": "服务调用成功！",
+      "ServiceCode": "1",
+      "RetStatus": "S",
+      "RetCode": "000000",
+      "ConsumerId": "1",
+      "PageTotalNum": "2222",
+      "SourceSysId": "1",
+      "TranTime": "180508604",
+      "PageEnd": "1"
+    },
+    "xml": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><definitions xmlns=\"http://www.omg.org/spec/BPMN/20100524/MODEL\" xmlns:activiti=\"http://some-company/schema/bpmn/activiti\" xmlns:bpmndi=\"http://www.omg.org/spec/BPMN/20100524/DI\" xmlns:di=\"http://www.omg.org/spec/DD/20100524/DI\" xmlns:omgdc=\"http://www.omg.org/spec/DD/20100524/DC\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" targetNamespace=\"http://www.activiti.org/test\">\n  <process id=\"GHQBG_START\" isExecutable=\"false\" name=\"对公客户管理变更\">\n    <startEvent activiti:nodeType=\"start\" id=\"startEvent1\" name=\"开始\">\n      <outgoing>Flow_1ktcksd</outgoing>\n    </startEvent>\n    <userTask activiti:forEnd=\"false\" activiti:forNum=\"0\" activiti:nodeType=\"approve\" activiti:sysNodeId=\"CUSTOMER_GHQBG_APPLY\" data=\"{&quot;mainflow&quot;:&quot;50120210107002310002&quot;,&quot;douser&quot;:&quot;tangtest&quot;,&quot;subflow&quot;:&quot;&quot;,&quot;state&quot;:&quot;0&quot;}\" id=\"Activity_1bjgzc0\" name=\"审批节点\" sysName=\"对公客户-审批节点(变更)\">\n      <incoming>Flow_0wfsm8x</incoming>\n      <outgoing>Flow_1l5gph5</outgoing>\n    </userTask>\n    <endEvent activiti:nodeType=\"endsucc\" id=\"Event_0lf5vzf\" name=\"正常结束\">\n      <incoming>Flow_1l5gph5</incoming>\n    </endEvent>\n    <sequenceFlow id=\"Flow_1l5gph5\" sourceRef=\"Activity_1bjgzc0\" targetRef=\"Event_0lf5vzf\">\n      <documentation/>\n    </sequenceFlow>\n    <userTask activiti:forEnd=\"false\" activiti:forNum=\"0\" activiti:nodeType=\"task\" activiti:sysNodeId=\"CUSTOMER_GHQBG_START\" data=\"{&quot;mainflow&quot;:&quot;50120210107002310002&quot;,&quot;subflow&quot;:&quot;&quot;,&quot;state&quot;:&quot;1&quot;,&quot;doresult&quot;:[{&quot;remark&quot;:&quot;首节点跳过&quot;,&quot;username&quot;:&quot;100001&quot;,&quot;dotime&quot;:&quot;2021-01-07 14:42:35&quot;}]}\" id=\"Activity_0zodrov\" name=\"业务节点\" sysName=\"对公客户管户权变更\">\n      <incoming>Flow_1ktcksd</incoming>\n      <outgoing>Flow_0wfsm8x</outgoing>\n    </userTask>\n    <sequenceFlow id=\"Flow_1ktcksd\" sourceRef=\"startEvent1\" targetRef=\"Activity_0zodrov\">\n      <documentation/>\n    </sequenceFlow>\n    <sequenceFlow id=\"Flow_0wfsm8x\" sourceRef=\"Activity_0zodrov\" targetRef=\"Activity_1bjgzc0\">\n      <documentation/>\n    </sequenceFlow>\n  </process>\n  <bpmndi:BPMNDiagram id=\"BPMNDiagram_GHQBG_START\">\n    <bpmndi:BPMNPlane bpmnElement=\"GHQBG_START\" id=\"BPMNPlane_GHQBG_START\">\n      <bpmndi:BPMNEdge bpmnElement=\"Flow_0wfsm8x\" id=\"Flow_0wfsm8x_di\">\n        <di:waypoint x=\"354\" y=\"220\"/>\n        <di:waypoint x=\"486\" y=\"220\"/>\n      </bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge bpmnElement=\"Flow_1ktcksd\" id=\"Flow_1ktcksd_di\">\n        <di:waypoint x=\"130\" y=\"220\"/>\n        <di:waypoint x=\"186\" y=\"220\"/>\n      </bpmndi:BPMNEdge>\n      <bpmndi:BPMNEdge bpmnElement=\"Flow_1l5gph5\" id=\"Flow_1l5gph5_di\">\n        <di:waypoint x=\"654\" y=\"220\"/>\n        <di:waypoint x=\"792\" y=\"220\"/>\n      </bpmndi:BPMNEdge>\n      <bpmndi:BPMNShape bpmnElement=\"startEvent1\" id=\"BPMNShape_startEvent1\">\n        <omgdc:Bounds height=\"40\" width=\"40\" x=\"90\" y=\"200\"/>\n        <bpmndi:BPMNLabel>\n          <omgdc:Bounds height=\"14\" width=\"22\" x=\"99\" y=\"243\"/>\n        </bpmndi:BPMNLabel>\n      </bpmndi:BPMNShape>\n      <bpmndi:BPMNShape bpmnElement=\"Activity_1bjgzc0\" id=\"Activity_1bjgzc0_di\">\n        <omgdc:Bounds height=\"94.3\" width=\"168\" x=\"486\" y=\"173\"/>\n      </bpmndi:BPMNShape>\n      <bpmndi:BPMNShape bpmnElement=\"Event_0lf5vzf\" id=\"Event_0lf5vzf_di\">\n        <omgdc:Bounds height=\"36\" width=\"36\" x=\"792\" y=\"202\"/>\n        <bpmndi:BPMNLabel>\n          <omgdc:Bounds height=\"14\" width=\"44\" x=\"788\" y=\"241\"/>\n        </bpmndi:BPMNLabel>\n      </bpmndi:BPMNShape>\n      <bpmndi:BPMNShape bpmnElement=\"Activity_0zodrov\" id=\"Activity_0zodrov_di\">\n        <omgdc:Bounds height=\"94.3\" width=\"168\" x=\"186\" y=\"173\"/>\n      </bpmndi:BPMNShape>\n    </bpmndi:BPMNPlane>\n  </bpmndi:BPMNDiagram>\n</definitions>"
+  }
+}

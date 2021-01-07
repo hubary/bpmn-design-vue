@@ -48,8 +48,11 @@
 
 <script>
 import { isType, isInclude } from '@packages/utils';
+import Locale from 'bpmn-design-vue/packages/mixins/locale';
+
 export default {
   name: 'process-card',
+  mixins: [Locale],
   components: {},
   props: {
     postion: {
@@ -87,7 +90,7 @@ export default {
   position: absolute;
   width: auto;
   height: 240px;
-  padding: 20px 0 20px 16px;
+  padding: 10px;
   overflow: hidden;
   .card-title {
     text-align: center;

@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import xml from './mockxml.json';
+import xml from './test.json';
 
 export default {
   name: 'Hubary',
@@ -19,7 +19,7 @@ export default {
   props: {},
   data() {
     return {
-      xml: xml.data.data,
+      xml: xml.data.xml,
     };
   },
   computed: {},
