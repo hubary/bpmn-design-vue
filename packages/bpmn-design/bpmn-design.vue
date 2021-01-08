@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="['bpmn-containers', { 'bpmn-scenes': !bpmnScenes }]"
+    :class="['bpmn-design-vue', 'bpmn-containers', { 'bpmn-scenes': !bpmnScenes }]"
     ref="content"
     v-loading="bpmnLoading"
   >
@@ -57,7 +57,8 @@
       :title="$i18Han('bpmn.viewSubprocess')"
       :visible.sync="isPopupShow"
       :close-on-click-modal="false"
-      width="80%">
+      width="80%"
+    >
       <process-pup :pupData="pupData" />
     </el-dialog>
   </div>
@@ -508,12 +509,9 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-@import '@packages/styles/common.scss';
-@import '@packages/styles/element-variables.scss';
-$--color-primary: #409eff;
-
-.bpmn-containers {
+<style lang="scss">
+.bpmn-design-vue.bpmn-containers {
+  $--color-primary: #409eff;
   position: relative;
   width: 100%;
   height: 100%;
@@ -656,7 +654,7 @@ $--color-primary: #409eff;
   }
 }
 
-.bpmn-scenes {
+.bpmn-design-vue.bpmn-scenes {
   .djs-palette.two-column.open,
   #js-properties-panel {
     display: none;

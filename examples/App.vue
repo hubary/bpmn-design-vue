@@ -16,7 +16,6 @@
 </template>
 
 <script>
-
 export default {
   name: 'App',
   components: {},
@@ -29,13 +28,13 @@ export default {
   width: 100%;
 }
 .hubary-aside {
-  background: #f99;
+  background: #b0aaaa;
   height: 100%;
 }
 .el-header {
-  background: #9f9;
+  background: #c8c8c8;
   display: flex;
-  justify-content:space-evenly;
+  justify-content: space-evenly;
   align-items: center;
 }
 .el-container {
