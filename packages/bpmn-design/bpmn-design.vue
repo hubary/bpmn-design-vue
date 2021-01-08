@@ -508,7 +508,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '@packages/styles/common.scss';
 @import '@packages/styles/element-variables.scss';
 $--color-primary: #409eff;

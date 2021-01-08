@@ -240,7 +240,7 @@ export default {
   },
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .popup-bpmn {
   position: relative;
   height: 65vh;
