@@ -1,10 +1,11 @@
 <template>
   <div
-    :class="['bpmn-design-vue', 'bpmn-containers', { 'bpmn-scenes': !bpmnScenes }]"
     ref="content"
     v-loading="bpmnLoading"
+    class="bpmn-design-vue"
+    :class="[{ 'bpmn-scenes': !bpmnScenes }]"
   >
-    <div id="bpmn-content" class="canvas" ref="canvas"></div>
+    <div class="canvas" ref="canvas"></div>
     <!-- 还不知道啥作用 -->
     <process-card v-show="eshow" :postion="cardPostion" :card="card" @subproc="checkSubproc" />
     <!-- 右侧属性面板 -->
@@ -510,7 +511,7 @@ export default {
 </script>
 
 <style lang="scss">
-.bpmn-design-vue.bpmn-containers {
+.bpmn-design-vue {
   $--color-primary: #409eff;
   position: relative;
   width: 100%;

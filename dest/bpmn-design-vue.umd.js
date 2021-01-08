@@ -5318,14 +5318,14 @@ if (typeof window !== 'undefined') {
 // Indicate to webpack that this file can be concatenated
 /* harmony default export */ var setPublicPath = (null);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"fb764104-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/bpmn-design/bpmn-design.vue?vue&type=template&id=54f84cf4&
-var bpmn_designvue_type_template_id_54f84cf4_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"loading",rawName:"v-loading",value:(_vm.bpmnLoading),expression:"bpmnLoading"}],ref:"content",class:['bpmn-design-vue', 'bpmn-containers', { 'bpmn-scenes': !_vm.bpmnScenes }]},[_c('div',{ref:"canvas",staticClass:"canvas",attrs:{"id":"bpmn-content"}}),_c('process-card',{directives:[{name:"show",rawName:"v-show",value:(_vm.eshow),expression:"eshow"}],attrs:{"postion":_vm.cardPostion,"card":_vm.card},on:{"subproc":_vm.checkSubproc}}),(_vm.bpmnScenes && _vm.bpmnModeler)?_c('properties-panel',{attrs:{"modeler":_vm.bpmnModeler,"show":_vm.mappingShow},on:{"update:show":function($event){_vm.mappingShow=$event}},scopedSlots:_vm._u([{key:"panelSlot",fn:function(ref){
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"fb764104-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/bpmn-design/bpmn-design.vue?vue&type=template&id=68e7a54a&
+var bpmn_designvue_type_template_id_68e7a54a_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"loading",rawName:"v-loading",value:(_vm.bpmnLoading),expression:"bpmnLoading"}],ref:"content",staticClass:"bpmn-design-vue",class:[{ 'bpmn-scenes': !_vm.bpmnScenes }]},[_c('div',{ref:"canvas",staticClass:"canvas"}),_c('process-card',{directives:[{name:"show",rawName:"v-show",value:(_vm.eshow),expression:"eshow"}],attrs:{"postion":_vm.cardPostion,"card":_vm.card},on:{"subproc":_vm.checkSubproc}}),(_vm.bpmnScenes && _vm.bpmnModeler)?_c('properties-panel',{attrs:{"modeler":_vm.bpmnModeler,"show":_vm.mappingShow},on:{"update:show":function($event){_vm.mappingShow=$event}},scopedSlots:_vm._u([{key:"panelSlot",fn:function(ref){
 var setMappingData = ref.setMappingData;
 return [_vm._t("mappingSlot",null,{"setMappingData":setMappingData})]}}],null,true)}):_vm._e(),_c('el-button-group',{staticClass:"bpmn-button-group"},[(_vm.bpmnScenes)?[_c('el-button',{attrs:{"type":"primary","icon":"el-icon-document","size":_vm.size},on:{"click":_vm.bpmnSave}},[_vm._v(_vm._s(_vm.$i18Han('fop.save')))]),_c('el-button',{attrs:{"type":"primary","icon":"el-icon-back","size":_vm.size},on:{"click":function($event){return _vm.changeBpmnStepBack()}}},[_vm._v(_vm._s(_vm.$i18Han('fop.revoke')))]),_c('el-button',{attrs:{"type":"primary","size":_vm.size},on:{"click":function($event){return _vm.changeBpmnStep()}}},[_vm._v(" "+_vm._s(_vm.$i18Han('fop.restore'))+" "),_c('i',{staticClass:"el-icon-right"})])]:_vm._e(),_c('el-button',{attrs:{"type":"primary","icon":"el-icon-zoom-in","size":_vm.size},on:{"click":function($event){return _vm.canvasZoom('enlarge')}}},[_vm._v(_vm._s(_vm.$i18Han('fop.enlarge')))]),_c('el-button',{attrs:{"type":"primary","icon":"el-icon-zoom-out","size":_vm.size},on:{"click":function($event){return _vm.canvasZoom('shrink')}}},[_vm._v(_vm._s(_vm.$i18Han('fop.shrink')))])],2),(!_vm.bpmnScenes)?_c('el-dialog',{attrs:{"title":_vm.$i18Han('bpmn.viewSubprocess'),"visible":_vm.isPopupShow,"close-on-click-modal":false,"width":"80%"},on:{"update:visible":function($event){_vm.isPopupShow=$event}}},[_c('process-pup',{attrs:{"pupData":_vm.pupData}})],1):_vm._e()],1)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./packages/bpmn-design/bpmn-design.vue?vue&type=template&id=54f84cf4&
+// CONCATENATED MODULE: ./packages/bpmn-design/bpmn-design.vue?vue&type=template&id=68e7a54a&
 
 // EXTERNAL MODULE: ./node_modules/inherits/inherits_browser.js
 var inherits_browser = __webpack_require__("3fb5");
@@ -62092,6 +62092,7 @@ var properties_panel_component = normalizeComponent(
 //
 //
 //
+//
 
 
 
@@ -62552,7 +62553,7 @@ var bpmn_designvue_type_style_index_0_lang_scss_ = __webpack_require__("52c9");
 
 var bpmn_design_component = normalizeComponent(
   bpmn_design_bpmn_designvue_type_script_lang_js_,
-  bpmn_designvue_type_template_id_54f84cf4_render,
+  bpmn_designvue_type_template_id_68e7a54a_render,
   staticRenderFns,
   false,
   null,
